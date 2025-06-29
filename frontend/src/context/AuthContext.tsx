@@ -9,7 +9,7 @@ import {
 } from 'react';
 // import toast from 'react-hot-toast';
 import {  useNavigate } from 'react-router-dom';
-import { api } from '../api';
+import { api, BASE_URL } from '../api';
 import { jwtDecode } from 'jwt-decode';
 import type { LoginFormData } from '../pages/login';
 import axios from 'axios';
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }) => {
 
     try {
-    const response = await axios.post('http://127.0.0.1:8000/api/register/', {
+    const response = await axios.post(`${BASE_URL}/register/`, {
       name,
       email,
       password,
@@ -135,7 +135,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
    
   }: LoginFormData) => {
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/login/', {
+      const res = await axios.post(`${BASE_URL}/login/`, {
      
         email,
         password,
