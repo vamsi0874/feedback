@@ -6,6 +6,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { api } from '../api';
 import { useNavigate } from 'react-router-dom';
 
+interface FeedbackFormData {
+    employee_id: string;
+    strengths: string;
+    areas_to_improve: string;
+    sentiment: 'positive' | 'neutral' | 'negative';
+    tags?: string | undefined;
+    employee_comments?: string | undefined;
+}
 const feedbackSchema = z.object({
   employee_id: z.string().min(1),
   strengths: z.string().min(1, 'Strengths are required'),
@@ -15,12 +23,12 @@ const feedbackSchema = z.object({
   employee_comments: z.string().optional(),
 });
 
-export default function FeedbackForm({ employeeId }:any) {
+export default function FeedbackForm() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
        const [employees, setEmployees] = React.useState([]);
        const navigate = useNavigate();
-       
+
       const managerEmployees = React.useCallback(async () => {
         try {
           const response = await api.get('/dashboard/');
@@ -39,20 +47,20 @@ export default function FeedbackForm({ employeeId }:any) {
     reset,
   } = useForm({
     resolver: zodResolver(feedbackSchema),
-    defaultValues: {
-      employee_id: employeeId,
-      sentiment: 'neutral',
-    },
+    // defaultValues: {
+    //   employee_id: employeeId,
+    //   sentiment: 'neutral',
+    // },
   });
 
-  const onSubmit = async (data:any) => {
+  const onSubmit = async (data:FeedbackFormData) => {
     const payload = {
       ...data,
-      tags: data.tags ? data.tags.split(',').map((t:any) => t.trim()) : [],
+      tags: data.tags ? data.tags.split(',').map((t:string) => t.trim()) : [],
     };
 setIsSubmitting(true);
 try {
-  const res = await api.post('/feedbacks/create/', payload);
+  await api.post('/feedbacks/create/', payload);
   reset();
   navigate('/feedbacks/' + data.employee_id);
 } catch (err) {
@@ -122,7 +130,7 @@ React.useEffect(() => {
       <div>
         <div>Employee</div>
          <select {...register('employee_id')} className="w-full p-2 border rounded">
-        {employees.map((employee:any, index) => (
+        {employees.map((employee:{id:string, name:string}, index: number) => (
 
               <option key={index} value={employee.id}>
               {employee.name}

@@ -11,7 +11,7 @@ import {
 import {  useNavigate } from 'react-router-dom';
 import { api, BASE_URL } from '../api';
 import { jwtDecode } from 'jwt-decode';
-import type { LoginFormData } from '../pages/login';
+
 import axios from 'axios';
 
 
@@ -25,7 +25,10 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (credentials: LoginFormData) => Promise<void>;
+  login: (credentials: {
+    email: string;
+    password: string;
+  }) => Promise<void>;
   logout: () => void;
   loading: boolean;
   updateToken: () => Promise<void>;
@@ -132,14 +135,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
    
     email,
     password,
-   
-  }: LoginFormData) => {
+  
+  }:{
+    email: string;
+    password: string;
+  }) => {
     try {
       const res = await axios.post(`${BASE_URL}/login/`, {
-     
         email,
         password,
       });
+      setLoading(false);
 
       console.log('Login response:', res.data);  
       const { tokens } = res.data;

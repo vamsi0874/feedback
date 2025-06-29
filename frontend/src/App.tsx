@@ -14,7 +14,6 @@ import { useEffect } from "react";
 const App = () => {
   const { user } = useAuth();
   const navigate = useNavigate()
-
   useEffect(()=>{
     navigate('/dashboard')
   },[user])

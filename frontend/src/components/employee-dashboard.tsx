@@ -2,6 +2,24 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 import ReactMarkdown from "react-markdown";
 
+interface Feedback {
+  id: string;
+  manager: {
+    name: string;
+  };
+  employee: {
+    name: string;
+    email: string;
+  };
+  strengths: string;
+  areas_to_improve: string;
+  sentiment: string;
+  tags: string[];
+  employee_comments: string;
+  acknowledged: boolean;
+  created_at: string;
+  updated_at: string;
+}
 const EmployeeDashboard = () => {
   const [dashboardData, setDashboardData] = useState([]);
   const [commentingId, setCommentingId] = useState<string | null>(null);
@@ -49,7 +67,7 @@ const EmployeeDashboard = () => {
       {dashboardData.length === 0 ? (
         <p className="text-gray-600">No feedback received yet.</p>
       ) : (
-        dashboardData.map((feedback: any, index: number) => (
+        dashboardData.map((feedback: Feedback, index: number) => (
           <div
             key={index}
             className="border p-4 rounded-md shadow-sm transition relative"

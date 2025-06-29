@@ -2,12 +2,21 @@ import React, { useEffect } from "react";
 import { api } from "../api";
 import { useNavigate } from "react-router-dom";
 
-
+type Employee = {
+  id: string;
+  name: string;
+  feedback_count: number;
+  sentiment_summary: {
+    positive: number;
+    neutral: number;
+    negative: number;
+  };
+}
 const ManagerDashboard = () => {
   const [dashboardData, setDashboardData] = React.useState<{
     team_size: number;
     total_feedbacks: number;
-    employees: any[];
+    employees: Employee[];
   }>();
 
   const navigate = useNavigate();
@@ -42,7 +51,7 @@ const ManagerDashboard = () => {
         <div>
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Employees</h2>
           <div className="space-y-4">
-            {dashboardData?.employees.map((employee: any, index) => (
+            {dashboardData?.employees.map((employee: Employee, index) => (
               <div
                 key={index}
                 className="bg-white p-4 rounded-lg shadow-sm border hover:shadow-md cursor-pointer transition"
