@@ -3,6 +3,8 @@
 A full-stack application built with **React.js** (frontend), **Django** (backend), and **SQLite** (database) to manage team feedback between managers and employees.
 
 ---
+deployed URL : [https://feedback-nu-three.vercel.app]
+
 
 ## 🔧 Tech Stack
 
@@ -27,7 +29,6 @@ A full-stack application built with **React.js** (frontend), **Django** (backend
 ### 1. Clone the Repository
 
 ```bash
-deployed URL : `https://feedback-nu-three.vercel.app`
 git clone https://github.com/vamsi0874/feedback.git
 
 cd backend
@@ -43,6 +44,11 @@ npm install
 npm start
 
 ```
+```bash
+cd backend/my_app
+docker compose up --build
+```
+
 # Project Overview
 This project is a Team Feedback Management System built using React.js for the frontend and Django for the backend with an SQLite database. It facilitates structured communication between managers and their employees through feedback.
 
@@ -99,6 +105,7 @@ Acknowledge the feedback
 Leave a comment
 
 Manager sees updates (acknowledgments and comments).
+
 
 
 
