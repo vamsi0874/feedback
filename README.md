@@ -43,10 +43,10 @@ npm install
 npm start
 
 ```
-Project Overview
+# Project Overview
 This project is a Team Feedback Management System built using React.js for the frontend and Django for the backend with an SQLite database. It facilitates structured communication between managers and their employees through feedback.
 
- User Authentication & Roles
+# User Authentication & Roles
 Uses a custom user model that supports login and registration.
 
 During registration, the user can select a role:
@@ -54,9 +54,9 @@ During registration, the user can select a role:
 manager
 
 employee (default if none selected)
-
- Roles and Dashboards
- Manager Dashboard
+---
+# Roles and Dashboards
+# Manager Dashboard
 Displays a list of feedback entries given to their assigned employees.
 
 A manager can:
@@ -72,10 +72,10 @@ Title
 Description
 
 Date
+---
+#Acknowledgment status (whether the employee has acknowledged it)
 
-Acknowledgment status (whether the employee has acknowledged it)
-
-Comments from the employee (if any)
+#Comments from the employee (if any)
 
  Employee Dashboard
 Displays feedback addressed to the logged-in employee.
@@ -86,7 +86,7 @@ Acknowledge feedback by marking it as seen/read.
 
 Comment on feedback with thoughts, clarifications, or responses.
 
- Feedback Flow
+ ## Feedback Flow
 Manager creates feedback for a team member.
 
 Employee logs in, views feedback.
