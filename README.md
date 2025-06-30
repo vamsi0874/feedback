@@ -72,10 +72,11 @@ Title
 Description
 
 Date
----
-#Acknowledgment status (whether the employee has acknowledged it)
 
-#Comments from the employee (if any)
+---
+ Acknowledgment status (whether the employee has acknowledged it)
+
+Comments from the employee (if any)
 
  Employee Dashboard
 Displays feedback addressed to the logged-in employee.
