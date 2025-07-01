@@ -17,6 +17,7 @@ const feedbackSchema = z.object({
 export default function UpdateForm({ data }:any) {
     
     const {id} = useParams();
+    const empId = data?.employee?.id || '';
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -47,7 +48,7 @@ export default function UpdateForm({ data }:any) {
 try {
   await api.put(`/feedbacks/${id}/update/`, payload);
   reset({ strengths: '', areas_to_improve: '', sentiment: 'neutral', tags: '' });
-  navigate('/feedbacks/' + id);
+  navigate('/feedbacks/' + empId);
 } catch (err) {
   alert('Failed to submit feedback');
 } finally {

@@ -1,4 +1,3 @@
-'use client';
 
 import { useState } from 'react';
 
@@ -9,8 +8,6 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { loginSchema } from '../schema';
-
-// import { useAuth } from '@/context/AuthContext';
 
 export interface LoginFormData {
 

@@ -111,9 +111,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
            if(tokens){
           localStorage.setItem('auth_tokens', JSON.stringify(response.data));
  
-        }else {
-          console.log('register')
-        }
+        } 
       
     const role = (jwtDecode(tokens.access) as { role?: string })?.role;
     if (role === 'Manager') {
@@ -147,28 +145,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
       setLoading(false);
 
-      console.log('Login response:', res.data);  
+ 
       const { tokens } = res.data;
-      console.log('tokens',tokens)
+     
       setAuthTokens(tokens);
       setUser(jwtDecode(tokens.access));
-      console.log(jwtDecode(tokens.access));
+
       
       
      if(tokens){
           localStorage.setItem('auth_tokens', JSON.stringify(res.data));
+          navigate('/dashboard');
  
         }else {
-          console.log('register')
+          navigate('/signup');
         }
       
-    const role = (jwtDecode(tokens.access) as { role?: string })?.role;
-    if (role === 'Manager') {
-        navigate('/dashboard');
-    }
-    else {
-        navigate('/dashboard');
-    } 
  
     } catch (error) {
       console.error('Login failed:', error);

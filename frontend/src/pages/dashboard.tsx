@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 const DashboardPage = () => {
   const {user} = useAuth()
- const role = user?.role || 'employee'; // Default to 'employee' if role is not defined
+ const role = user?.role || 'employee';
   console.log('User:', user);
   return (
     <div>
