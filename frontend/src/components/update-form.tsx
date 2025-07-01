@@ -43,7 +43,7 @@ export default function UpdateForm({ data }:any) {
       ...data,
       tags: data.tags ? data.tags.split(',').map((t:any) => t.trim()) : [],
     };
-  console.log('Payload:', payload);
+  // console.log('Payload:', payload);
    setIsSubmitting(true);
 try {
   await api.put(`/feedbacks/${id}/update/`, payload);

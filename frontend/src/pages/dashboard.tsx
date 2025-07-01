@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 const DashboardPage = () => {
   const {user} = useAuth()
  const role = user?.role || 'employee';
-  console.log('User:', user);
+ 
   return (
     <div>
    

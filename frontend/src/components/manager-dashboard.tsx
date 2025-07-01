@@ -25,7 +25,7 @@ const ManagerDashboard = () => {
 
   const fetchdashboardData = async () => {
     const response = await api.get("/dashboard/");
-    console.log("Dashboard data:", response.data);
+    // console.log("Dashboard data:", response.data);
     setDashboardData(response.data);
   };
 

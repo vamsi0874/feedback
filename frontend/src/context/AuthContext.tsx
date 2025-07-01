@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (tokens) {
       try {
         const parsed = JSON.parse(tokens);
-        console.log('Parsed tokens:', parsed);
+        // console.log('Parsed tokens:', parsed);
         return jwtDecode(parsed.tokens.access);
       } catch {
         return null;
@@ -64,11 +64,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
 
   const updateToken = async () => {
-    console.log('authtokens',authTokens);
+    
     const res = await api.post('/token/refresh/', {
       refresh: authTokens?.refresh,
     })
-    console.log('Token refreshed:', res.data);
     if(res.status === 200){
       setAuthTokens(res.data);
       setUser(jwtDecode(res.data.access));
@@ -102,7 +101,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       password,
       role,
     });
-    console.log('Signup response:', response.data);
+  
     const { tokens } = response.data;
     setAuthTokens(tokens);
       setUser(jwtDecode(tokens.access));

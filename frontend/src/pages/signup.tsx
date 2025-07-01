@@ -53,8 +53,7 @@ export default function SignupPage() {
     password: string;
     role?: string;
   }) => {
-    console.log('Form data:', data);
-    
+   
       mutate(data);
    
   };

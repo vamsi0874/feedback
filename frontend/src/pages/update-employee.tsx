@@ -6,7 +6,7 @@ const UpdateEmployee = () => {
 
   const { state } = useLocation();  
   const data = state?.data;
-  console.log('Data:', data);
+ 
   return (
     <div>
        <UpdateForm data={data}/>
