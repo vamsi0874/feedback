@@ -3,17 +3,12 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '../context/AuthContext';
-import { z } from 'zod';
+
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { signupSchema } from '../schemas/shemas';
 
 
-const signupSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  role: z.string().optional(),
-});
 
 export default function SignupPage() {
  
@@ -22,12 +17,8 @@ export default function SignupPage() {
 
   const { mutate } = useMutation({
     mutationFn: signup,
-    onSuccess: () => {
-      console.log('Registration successful');
-      
-    },
+    onSuccess: () => {},
     onError: (err) => {
-        
       console.log("Registration failed", err);
    
       const errorMsg =
@@ -91,19 +82,13 @@ export default function SignupPage() {
           <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>
         )}
 
-        {/* <input
-          {...register("role")}
-          type="text"
-          placeholder="role (optional)"
-          className="w-full p-2 border border-gray-300 rounded mb-4 text-black"
-        /> */}
         <select {...register("role")}
           className="w-full p-2 border border-gray-300 rounded mb-4 text-black"
             
           >
         
-          <option value="employee">Employee</option>
-          <option value="manager">Manager</option>
+          <option value="employee">teacher</option>
+          <option value="manager">student</option>
         </select>
         {errors.role && (
           <p className="mt-1 text-sm text-red-500">{errors.role.message}</p>
