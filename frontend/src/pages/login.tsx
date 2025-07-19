@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { loginSchema }  from '../schemas/shemas';
+import { loginSchema } from '../schema';
 
 export interface LoginFormData {
 
@@ -99,7 +99,7 @@ export default function LoginPage() {
 
      
         <p className="mt-6 text-center text-sm text-gray-700">
-          Don&apos;t have an account?<span className='p-1'></span>
+          Don&apos;t have an account? &apos;
           <Link to="/signup" className="text-green-600 hover:underline">
             Sign up
           </Link>

@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import User
+from .models import User, Feedback, Team
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Assignment, Submission
 
 class UserAdmin(BaseUserAdmin):
     list_display = ('email', 'name', 'role', 'is_admin')
@@ -12,6 +11,5 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = ()
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Assignment)
-admin.site.register(Submission)
-
+admin.site.register(Team)
+admin.site.register(Feedback)

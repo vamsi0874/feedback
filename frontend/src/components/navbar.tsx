@@ -1,10 +1,9 @@
 import {  useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { user } = useAuth();
-
+  // console.log("User:", user);
   const { logout } = useAuth();
   const navigate = useNavigate()
 
@@ -14,36 +13,24 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white text-black px-6 py-4 flex justify-between items-center border-b-2 border-gray-200">
-      <Link to='/'><h1 className="text-xl font-bold">Assignment Portal</h1></Link>
-      <ul className="flex space-x-6">
-        {/* {user?.role === 'teacher' && (
-          <>
-            <li>
-              <Link to="/create-assignment" className="hover:underline">
-                Create Assignment
-              </Link>
-            </li>
-            <li>
-              <Link to="/view-submissions" className="hover:underline">
-                View Submissions
-              </Link>
-            </li>
-          </>
-        )} */}
+    <div className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+      <h1 onClick={()=>navigate('/dashboard')} className="text-2xl font-bold text-gray-800 cursor-pointer">Feedback App</h1>
 
-        {user?.role === 'student' && (
-          <>
-            {/* <li>
-              <Link to="/submit-assignment" className="hover:underline">
-                Submit Assignment
-              </Link>
-            </li> */}
-          </>
+      <div className="flex items-center gap-6">
+        {user && (
+          <p className="text-gray-700 font-medium">
+            Welcome, <span className="font-semibold">{user.name}</span>
+          </p>
         )}
-      </ul>
-      <button onClick={handleLogout} className=" text-black p-2 rounded-md cursor-pointer">Logout</button>
-    </nav>
+
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
+        >
+          {user ? "Logout" : "Login"}
+        </button>
+      </div>
+    </div>
   );
 };
 
