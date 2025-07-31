@@ -18,6 +18,9 @@ export interface LoginFormData {
 export default function LoginPage() {
   const { login } = useAuth();
 
+  const [email, setEmail] = useState('v@gmail.com');
+  const [password, setPassword] = useState('123456');
+
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,6 +61,9 @@ export default function LoginPage() {
           <input
             {...register('email')}
             placeholder="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-black"
           />
           {errors.email && (
@@ -72,6 +78,8 @@ export default function LoginPage() {
             {...register('password')}
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-black"
           />
           <span
